@@ -42,6 +42,21 @@ const Step = ({ icon, title, desc }: StepProps) => (
   </div>
 );
 
+const MapSection = () => {
+  const position: LatLngExpression = [39.6336446,22.4186442]; // [Latitude, Longitude]
+
+  return (
+    <div className="h-96 w-full rounded-lg overflow-hidden shadow-lg">
+      <MapContainer center={position} zoom={13} scrollWheelZoom={false} className="h-full">
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+      </MapContainer>
+    </div>
+  );
+};
+
 function App() {
   const images = [
     '/bg/window-cleaning-bg.jpg',
@@ -89,25 +104,10 @@ function App() {
     {
       title: "Καθαρισμός Υπαίθριου Χώρου",
       icon: faTree,
-      items: ["Καθαρισμός δαπέδων", "Πλύσιμο parking", "Μάζεμα φύλλων και σκόνης", "Μάζεμμα σκουπιδιών"],
+      items: ["Καθαρισμός δαπέδων", "Πλύσιμο parking", "Μάζεμα φύλλων και σκόνης", "Μάζεμα σκουπιδιών"],
       color: "border-green-400"
     }
   ];
-
-  const MapSection = () => {
-    const position: LatLngExpression = [39.6336446,22.4186442]; // [Latitude, Longitude]
-
-    return (
-      <div className="h-96 w-full rounded-lg overflow-hidden shadow-lg">
-        <MapContainer center={position} zoom={13} scrollWheelZoom={false} className="h-full">
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer>
-      </div>
-    );
-  };
 
   return (
     <div className="font-sans text-gray-800">
@@ -173,7 +173,7 @@ function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#book" className="w-full sm:w-auto">
               <button className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-500/30 text-white font-bold py-4 px-10 rounded-xl uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-3">
-                ΚΛΕΙΣΕ ΡΑΝΤΕΒΟΥ <FontAwesomeIcon icon={faPhone} />
+                κλεισε ραντεβου <FontAwesomeIcon icon={faPhone} />
               </button>
             </a>
             
@@ -201,7 +201,7 @@ function App() {
           <Step
             icon={faPhone}
             title="Τηλεφώνησέ μας"
-            desc="Επικοινώνησε μαζί μας και πες μας πως μπορούμε να σε βοηθήσουμε."
+            desc="Επικοινώνησε μαζί μας και πες μας πώς μπορούμε να σε βοηθήσουμε."
           />
           <Step 
             icon={faClock}
@@ -299,7 +299,7 @@ function App() {
             </h2>
             
             <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
-              Η κράτηση γίνεται αποκλειστικά μέσω τηλεφώνου για να διασφαλίσουμε την καλύτερη δυνατή εξυπηρέτηση και την ακριβής εκτίμηση του χώρου σας.
+              Η κράτηση γίνεται αποκλειστικά μέσω τηλεφώνου για να διασφαλίσουμε την καλύτερη δυνατή εξυπηρέτηση και την ακριβή εκτίμηση του χώρου σας.
             </p>
 
             {/* Phone Number Box */}
@@ -334,7 +334,7 @@ function App() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-12">
             
             {/* Left Side: Logo & Tagline */}
-            <div className="max-w-xs">
+            <div className="flex flex-col items-center max-w-xs">
               <img src="/logo/barbas-cleaning-nobg.png" width={"250"} />
               {/* <div className="text-3xl font-bold text-cyan-500 mb-4">Barbas</div> */}
               <p className="text-gray-400 text-sm leading-relaxed">
