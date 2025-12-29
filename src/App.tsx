@@ -1,11 +1,46 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faCalendarAlt, faHome, faBuilding, faCar, faCheckCircle, faEnvelope, faMapMarkerAlt, faArrowRight, faPhoneVolume, faClock, faBriefcase, faTree } from '@fortawesome/free-solid-svg-icons';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  faPhone,
+  faBuilding,
+  faCar,
+  faCheckCircle,
+  faEnvelope,
+  faMapMarkerAlt,
+  faArrowRight,
+  faPhoneVolume,
+  faClock,
+  faBriefcase,
+  faTree,
+  type IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const PHONE_NUMBER = "6974965107";
 const EMAIL = "example@example.com";
+
+interface StepProps {
+  icon: IconDefinition;
+  title: string;
+  desc: string;
+}
+
+const Step = ({ icon, title, desc }: StepProps) => (
+  <div className="flex flex-col items-center hover:scale-102 transition-all cursor-pointer group">
+    <div className="text-5xl text-cyan-400 mb-6 border-2 border-cyan-400 p-6 rounded-lg aspect-square flex items-center justify-center
+                      transition-all
+                      group-hover:bg-gradient-to-br group-hover:from-cyan-400 group-hover:to-cyan-600
+                      group-hover:border-white group-hover:text-white">
+      <a href="#book">
+        <FontAwesomeIcon icon={icon} />
+      </a>
+    </div>
+    <h3 className="text-lg font-bold mb-2">{title}</h3>
+    <p className="text-gray-500 text-sm leading-relaxed max-w-xs">{desc}</p>
+  </div>
+);
 
 function App() {
   const images = [
@@ -24,28 +59,13 @@ function App() {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  const Step = ({ icon, title, desc }) => (
-    <div className="flex flex-col items-center hover:scale-102 transition-all cursor-pointer group">
-      <div className="text-5xl text-cyan-400 mb-6 border-2 border-cyan-400 p-6 rounded-lg aspect-square flex items-center justify-center 
-                      transition-all
-                      group-hover:bg-gradient-to-br group-hover:from-cyan-400 group-hover:to-cyan-600 
-                      group-hover:border-white group-hover:text-white">
-        <a href="#book">
-          <FontAwesomeIcon icon={icon} />
-        </a>
-      </div>
-      <h3 className="text-lg font-bold mb-2">{title}</h3>
-      <p className="text-gray-500 text-sm leading-relaxed max-w-xs">{desc}</p>
-    </div>
-  );
-
-  const Testimonial = ({ text }) => (
-    <div className="bg-white p-8 border border-cyan-100 relative shadow-sm hover:shadow-md transition">
-      <div className="text-cyan-300 text-4xl font-serif absolute top-4 left-4 opacity-30">“</div>
-      <p className="text-gray-500 text-sm italic leading-relaxed">{text}</p>
-      <div className="mt-4 text-cyan-500 text-2xl">▼</div>
-    </div>
-  );
+  // const Testimonial = ({ text }) => (
+  //   <div className="bg-white p-8 border border-cyan-100 relative shadow-sm hover:shadow-md transition">
+  //     <div className="text-cyan-300 text-4xl font-serif absolute top-4 left-4 opacity-30">“</div>
+  //     <p className="text-gray-500 text-sm italic leading-relaxed">{text}</p>
+  //     <div className="mt-4 text-cyan-500 text-2xl">▼</div>
+  //   </div>
+  // );
 
   const services = [
     {
@@ -75,7 +95,7 @@ function App() {
   ];
 
   const MapSection = () => {
-    const position = [39.6336446,22.4186442]; // [Latitude, Longitude]
+    const position: LatLngExpression = [39.6336446,22.4186442]; // [Latitude, Longitude]
 
     return (
       <div className="h-96 w-full rounded-lg overflow-hidden shadow-lg">
