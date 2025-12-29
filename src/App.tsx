@@ -18,7 +18,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import { type LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const PHONE_NUMBER = "6974965107";
+const PHONE_NUMBER = "0000000000";
 const EMAIL = "example@example.com";
 
 interface StepProps {
