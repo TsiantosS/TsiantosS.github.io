@@ -17,9 +17,8 @@ import {
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { type LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
-const PHONE_NUMBER = "0000000000";
-const EMAIL = "example@example.com";
+import ConstructionModal from "./construction";
+import { UNDER_CONSTRUCTION, PHONE_NUMBER, CONTACT_EMAIL } from "./globals";
 
 interface StepProps {
   icon: IconDefinition;
@@ -108,6 +107,10 @@ function App() {
       color: "border-green-400"
     }
   ];
+
+  if (UNDER_CONSTRUCTION) {
+    return <ConstructionModal />;
+  }
 
   return (
     <div className="font-sans text-gray-800">
@@ -338,7 +341,7 @@ function App() {
               <img src="/logo/barbas-cleaning-nobg.png" width={"250"} />
               {/* <div className="text-3xl font-bold text-cyan-500 mb-4">Barbas</div> */}
               <p className="text-gray-400 text-sm leading-relaxed">
-                Επαγγελματικές υπηρεσίες καθαρισμού για το σπίτι, την επιχείρηση και το αυτοκίνητό σας. 
+                Επαγγελματικές υπηρεσίες καθαρισμού για την επιχείρηση και το επαγγελματικό αυτοκίνητό σας.
                 Κάνουμε τη ζωή σας πιο καθαρή και εύκολη.
               </p>
             </div>
@@ -351,7 +354,7 @@ function App() {
               
               <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
                 <FontAwesomeIcon icon={faEnvelope} className="text-cyan-400 w-5" />
-                <a href={`mailto:${EMAIL}`} className="text-sm">{EMAIL}</a>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm">{CONTACT_EMAIL}</a>
               </div>
 
               <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
