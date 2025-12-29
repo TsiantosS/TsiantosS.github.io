@@ -15,7 +15,7 @@ import {
   type IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import { LatLngExpression } from 'leaflet';
+import { type LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const PHONE_NUMBER = "6974965107";
