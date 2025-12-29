@@ -369,7 +369,7 @@ function App() {
           {/* Bottom Bar: Copyright */}
           <div className="border-t border-gray-50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 uppercase tracking-widest">
             <p>© {new Date().getFullYear()} Barbas. All rights reserved.</p>
-            <div>Made by <a href="https://tsiantosd.tech">TSIANTOSD</a></div>
+            <div>Made by <a href="https://tsiantosd.tech">TSIANTOS DIMITRIOS</a></div>
             <div className="flex gap-6">
               <a href="#" className="hover:text-cyan-500">Privacy Policy</a>
               <a href="#" className="hover:text-cyan-500">Terms of Service</a>
