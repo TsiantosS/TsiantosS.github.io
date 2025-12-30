@@ -5,7 +5,6 @@ import {
   faBuilding,
   faCar,
   faCheckCircle,
-  faEnvelope,
   faMapMarkerAlt,
   faArrowRight,
   faPhoneVolume,
@@ -15,10 +14,10 @@ import {
   type IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import { type LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import ConstructionModal from "./construction";
-import { UNDER_CONSTRUCTION, PHONE_NUMBER, CONTACT_EMAIL } from "./globals";
+import { UNDER_CONSTRUCTION, PHONE_NUMBER, CONTACT_EMAIL, GEMI_NUMBER, MAP_POSITION, VAT_NUMBER } from "./globals";
+import ScrollUpButton from "./ScrollUpButton";
 
 interface StepProps {
   icon: IconDefinition;
@@ -40,21 +39,6 @@ const Step = ({ icon, title, desc }: StepProps) => (
     <p className="text-gray-500 text-sm leading-relaxed max-w-xs">{desc}</p>
   </div>
 );
-
-const MapSection = () => {
-  const position: LatLngExpression = [39.6336446,22.4186442]; // [Latitude, Longitude]
-
-  return (
-    <div className="h-96 w-full rounded-lg overflow-hidden shadow-lg">
-      <MapContainer center={position} zoom={13} scrollWheelZoom={false} className="h-full">
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      </MapContainer>
-    </div>
-  );
-};
 
 function App() {
   const images = [
@@ -114,6 +98,7 @@ function App() {
 
   return (
     <div className="font-sans text-gray-800">
+      <ScrollUpButton />
       {/* Navigation */}
       <nav className="sticky top-0 z-50 flex items-center justify-between px-8 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
         <div className="flex items-center gap-8 text-sm font-medium text-gray-600">
@@ -333,50 +318,54 @@ function App() {
       </section>
 
       <footer className="bg-gray-50 border-t border-gray-100 pt-2 pb-8 px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-12">
-            
-            {/* Left Side: Logo & Tagline */}
-            <div className="flex flex-col items-center max-w-xs">
+        <div className="max-w-6xl mx-auto pt-10">
+          <div className="grid grid-cols-6 gap-8">
+            <div className="col-span-2 flex flex-col items-center max-w-xs">
               <img src="/logo/barbas-cleaning-nobg.png" width={"250"} />
-              {/* <div className="text-3xl font-bold text-cyan-500 mb-4">Barbas</div> */}
               <p className="text-gray-400 text-sm leading-relaxed">
                 Επαγγελματικές υπηρεσίες καθαρισμού για την επιχείρηση και το επαγγελματικό αυτοκίνητό σας.
                 Κάνουμε τη ζωή σας πιο καθαρή και εύκολη.
               </p>
             </div>
-
-            <MapSection />
-
-            {/* Right Side: Contact Info */}
-            <div className="flex flex-col gap-4 text-gray-600">
-              <h4 className="font-bold text-gray-800 uppercase tracking-wider text-xs mb-2">Επικοινωνία</h4>
-              
-              <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
-                <FontAwesomeIcon icon={faEnvelope} className="text-cyan-400 w-5" />
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm">{CONTACT_EMAIL}</a>
+            <div className="col-span-3 h-80 rounded-lg overflow-hidden shadow-lg">
+              <MapContainer center={MAP_POSITION} zoom={13} scrollWheelZoom={false} className="h-full">
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </MapContainer>
+            </div>
+            <div className="col-span-1 flex flex-col gap-10 text-gray-600">
+              <div>
+                <h4 className="font-bold text-gray-800 uppercase tracking-wider text-xs mb-2">Στοιχεια Επικοινωνιας</h4>
+                <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm">{CONTACT_EMAIL}</a>
+                </div>
+                <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
+                  <a href={`tel:+30${PHONE_NUMBER}`} className="text-sm">+30 {PHONE_NUMBER}</a>
+                </div>
               </div>
-
-              <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
-                <FontAwesomeIcon icon={faPhone} className="text-cyan-400 w-5" />
-                <a href={`tel:+30${PHONE_NUMBER}`} className="text-sm">+30 {PHONE_NUMBER}</a>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="text-cyan-400 w-5" />
-                <span className="text-sm">Λάρισα, Ελλάδα</span>
+              <div>
+                <h4 className="font-bold text-gray-800 uppercase tracking-wider text-xs mb-2">Στοιχεια Επιχειρησης</h4>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm">ΑΦΜ: {VAT_NUMBER}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm">Αρ. Γ.ΕΜ.Η.: {GEMI_NUMBER}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm">Λάρισα, Ελλάδα</span>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Bottom Bar: Copyright */}
           <div className="border-t border-gray-50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 uppercase tracking-widest">
             <p>© {new Date().getFullYear()} Barbas. All rights reserved.</p>
-            <div>Made by <a href="https://tsiantosd.tech">TSIANTOS DIMITRIOS</a></div>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-cyan-500">Privacy Policy</a>
-              <a href="#" className="hover:text-cyan-500">Terms of Service</a>
-            </div>
+            <div>Made by <a href="https://tsiantosd.tech/" target="_blank">TSIANTOS DIMITRIOS</a></div>
+            {/*<div className="flex gap-6">*/}
+            {/*  <a href="#" className="hover:text-cyan-500">Privacy Policy</a>*/}
+            {/*  <a href="#" className="hover:text-cyan-500">Terms of Service</a>*/}
+            {/*</div>*/}
           </div>
         </div>
       </footer>
