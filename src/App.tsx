@@ -139,7 +139,7 @@ function App() {
           
           {/* Badge/Small Text */}
           <span className="inline-block px-4 py-1 mb-6 text-xs font-bold tracking-widest text-cyan-600 uppercase bg-cyan-100/50 rounded-full">
-            Επαγγελματικος Καθαρισμος
+            Βιολογικος Καθαρισμος
           </span>
 
           <h1 className="text-4xl md:text-6xl font-black mb-6 text-gray-900 leading-tight">
@@ -180,7 +180,6 @@ function App() {
         <span className="font-bold text-xl italic text-gray-400">MOBWORLD</span>
       </div> */}
 
-      {/* How It Works Section */}
       <section id="how" className="py-20 px-8 text-center">
         <h2 className="text-3xl font-light mb-2">Κλείσε τώρα <span className="text-cyan-500 border-b-2 border-cyan-500">Ραντεβού</span></h2>
         <p className="text-gray-400 mb-16 text-sm"></p>
@@ -327,22 +326,14 @@ function App() {
                 Κάνουμε τη ζωή σας πιο καθαρή και εύκολη.
               </p>
             </div>
-            <div className="col-span-3 h-80 rounded-lg overflow-hidden shadow-lg">
-              <MapContainer center={MAP_POSITION} zoom={13} scrollWheelZoom={false} className="h-full">
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-              </MapContainer>
-            </div>
-            <div className="col-span-1 flex flex-col gap-10 text-gray-600">
+            <div className="col-span-2 flex flex-col gap-10 text-gray-600">
               <div>
                 <h4 className="font-bold text-gray-800 uppercase tracking-wider text-xs mb-2">Στοιχεια Επικοινωνιας</h4>
-                <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm">{CONTACT_EMAIL}</a>
+                <div className="flex items-center gap-3">
+                  <a className="text-sm">{CONTACT_EMAIL}</a>
                 </div>
-                <div className="flex items-center gap-3 hover:text-cyan-500 transition-colors">
-                  <a href={`tel:+30${PHONE_NUMBER}`} className="text-sm">+30 {PHONE_NUMBER}</a>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm">+30 {PHONE_NUMBER}</span>
                 </div>
               </div>
               <div>
@@ -357,6 +348,14 @@ function App() {
                   <span className="text-sm">Λάρισα, Ελλάδα</span>
                 </div>
               </div>
+            </div>
+            <div className="col-span-2 h-80 rounded-lg overflow-hidden shadow-lg">
+              <MapContainer center={MAP_POSITION} zoom={13} scrollWheelZoom={false} className="h-full">
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </MapContainer>
             </div>
           </div>
           <div className="border-t border-gray-50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 uppercase tracking-widest">
